@@ -14,7 +14,7 @@ URL = "https://www.instagram.com/"
 headless = webdriver.ChromeOptions()
 headless.add_argument('headless')
 
-DRIVER = webdriver.Chrome(chrome_options=headless)
+DRIVER = webdriver.Chrome()
 
 class Insta:
 
@@ -74,6 +74,7 @@ class Insta:
 
 
     def followings(self):
+        z=0
         self.to_profile()
         x = 0
         # Below finds the following subtag in the users profile page
@@ -91,48 +92,13 @@ class Insta:
         use_following_count = following_count/12
         following_sub.click()
         bottom = WebDriverWait(DRIVER, 3).until(ec.presence_of_element_located((By.CSS_SELECTOR, 'div.PdwC2.HYpXt')))
-        actions = webdriver.ActionChains(DRIVER)
-        actions.move_to_element(bottom)
-        actions.click()
         while x < use_following_count:
-            # When in doubt brute force it out? I'm pretty sure that the actual way to scroll to the bottom doesn't work on mac or at least not for popups.
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.perform()
+            while z < 6:
+                actions = webdriver.ActionChains(DRIVER)
+                actions.move_to_element(bottom)
+                actions.click()
+                actions.send_keys(Keys.END)
+                actions.perform()
             x += 1
 
 
@@ -146,6 +112,7 @@ class Insta:
 
 
     def followers(self):
+        z=0
         self.to_profile()
         x = 0
         # finds the followers element on the users profile page
@@ -173,43 +140,14 @@ class Insta:
 
         while x < use_follower_total:
             # Same thing as in followings
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.send_keys(Keys.END)
-            actions.perform()
+            while z < 6:
+                actions = webdriver.ActionChains(DRIVER)
+                actions.move_to_element(pop_up)
+                actions.click()
+                actions.send_keys(Keys.END)
+                actions.perform()
+                z+=1
+            z=0
             x += 1
 
 
@@ -327,7 +265,7 @@ class Insta:
     @staticmethod
     def get_user_images(name, number, location):
         count=1
-        DRIVER.get(f'https://www.Instagram.com/{name}/')
+        DRIVER.get(f'{URL}{name}/')
         # finds images
         try:
             images = WebDriverWait(DRIVER, 3).until(ec.presence_of_element_located((By.CSS_SELECTOR, 'div.v1Nh3.kIKUG._bz0w')))
@@ -366,7 +304,7 @@ class Insta:
     @staticmethod
     def like_user_posts(name, number):
         count = 0
-        DRIVER.get(f'https://www.Instagram.com/{name}/')
+        DRIVER.get(f'{URL}{name}/')
         # finds images
         try:
             images = WebDriverWait(DRIVER, 3).until(ec.presence_of_element_located((By.CSS_SELECTOR, 'div.v1Nh3.kIKUG._bz0w')))
@@ -396,7 +334,7 @@ class Insta:
     @staticmethod
     def unlike_user_posts(name, number):
         count = 0
-        DRIVER.get(f'https://www.Instagram.com/{name}/')
+        DRIVER.get(f'{URL}{name}/')
         # finds images
         try:
             images = WebDriverWait(DRIVER, 3).until(ec.presence_of_element_located((By.CSS_SELECTOR, 'div.v1Nh3.kIKUG._bz0w')))
@@ -424,5 +362,4 @@ class Insta:
             count += 1
 
 Insta = Insta()
-
 

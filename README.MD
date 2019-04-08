@@ -1,3 +1,6 @@
+## Pynsta is currently out of order due to changes in XPATHs on Instagrams Website.  This will be fixed eventually.
+
+
 Welcome to Pynsta, a python module for doing cool things with websites.  Below you will find all of the information necessary for working with Pynsta.
 
 

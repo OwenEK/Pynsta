@@ -91,5 +91,3 @@ unlike_user_posts operates in the same manner that like_user_posts, except inste
 > Insta.like_user_posts('github', '50')
 
 
-## Want to contribute, suggest an idea or give tips?
-Feel free to do so.  Whether you yourself want to add a feature, you have a suggestion for what I should add, or you have some tips that would help in making pynsta more pythonic, run faster or better it in some other way, all contributions will be much appreciated!
